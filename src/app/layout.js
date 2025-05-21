@@ -1,11 +1,11 @@
 // src/app/layout.js
-'use client'; // Layout bisa menjadi client component jika menggunakan AnimatePresence
+'use client'; 
 
 import { Poppins } from 'next/font/google';
 import './globals.css';
-import { Providers } from './providers'; // Asumsi providers.js sudah ada untuk ChakraProvider
+import { Providers } from './providers'; 
 import { motion, AnimatePresence } from 'framer-motion';
-import { usePathname } from 'next/navigation'; // Untuk mendapatkan path URL sebagai key
+import { usePathname } from 'next/navigation'; 
 
 const poppins = Poppins({
   subsets: ['latin'],
@@ -14,58 +14,64 @@ const poppins = Poppins({
   variable: '--font-poppins',
 });
 
-// Tidak perlu export metadata di sini jika sudah dihandle Providers atau page-specific
-// export const metadata = {
-//   title: 'Nordz Apparel',
-//   description: 'Streetwear & Urban Apparel Nordz - Original & Berkualitas',
-// };
+// Metadata default untuk seluruh aplikasi
+export const metadata = {
+  title: 'Nordz Apparel - Streetwear & Urban Apparel',
+  description: 'Temukan koleksi streetwear dan urban apparel original dari Nordz. Kualitas, style, dan kenyamanan untuk gaya terbaikmu.',
+  // Anda bisa menambahkan metadata lain di sini jika perlu, seperti:
+  // keywords: 'nordz, streetwear, urban apparel, kaos distro, hoodie, fashion pria, fashion wanita',
+  // openGraph: {
+  //   title: 'Nordz Apparel',
+  //   description: 'Streetwear & Urban Apparel Original dan Berkualitas.',
+  //   images: [
+  //     {
+  //       url: '/icons/nordz-logo.png', // Path ke logo Anda di folder public
+  //       width: 800, // Sesuaikan
+  //       height: 600, // Sesuaikan
+  //       alt: 'Nordz Apparel Logo',
+  //     },
+  //   ],
+  //   siteName: 'Nordz Apparel',
+  // },
+};
 
-// Varian untuk animasi transisi halaman
 const pageTransitionVariants = {
   initial: {
     opacity: 0,
-    // x: "-100vw", // Contoh animasi slide dari kiri
-    // scale: 0.95,
     y: 15,
   },
   in: {
     opacity: 1,
-    // x: 0,
-    // scale: 1,
     y: 0,
     transition: {
-      duration: 0.5, // Durasi animasi masuk
-      ease: [0.42, 0, 0.58, 1], // Cubic bezier untuk easing yang smooth
-      // type: "spring", stiffness: 100, damping: 20 // Alternatif dengan spring
+      duration: 0.5, 
+      ease: [0.42, 0, 0.58, 1], 
     },
   },
   out: {
     opacity: 0,
-    // x: "100vw", // Contoh animasi slide ke kanan
-    // scale: 1.05,
     y: -15,
     transition: {
-      duration: 0.3, // Durasi animasi keluar
+      duration: 0.3, 
       ease: [0.42, 0, 0.58, 1],
     },
   },
 };
 
 export default function RootLayout({ children }) {
-  const pathname = usePathname(); // Mendapatkan path URL saat ini
+  const pathname = usePathname(); 
 
   return (
     <html lang="id" className={poppins.variable}>
       <body>
-        <Providers> {/* ChakraProvider dan theme ada di dalam Providers */}
-          <AnimatePresence mode="wait"> {/* mode="wait" agar animasi keluar selesai sebelum animasi masuk dimulai */}
+        <Providers> 
+          <AnimatePresence mode="wait"> 
             <motion.main
-              key={pathname} // Key unik berdasarkan path, penting untuk AnimatePresence
+              key={pathname} 
               variants={pageTransitionVariants}
               initial="initial"
               animate="in"
               exit="out"
-              // style={{ overflowX: 'hidden' }} // Opsional: mencegah horizontal scrollbar saat transisi slide
             >
               {children}
             </motion.main>
