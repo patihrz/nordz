@@ -2,6 +2,7 @@
 'use client'; 
 
 import { Poppins } from 'next/font/google';
+import Head from 'next/head'; // Import Head dari next/head
 import './globals.css';
 import { Providers } from './providers'; 
 import { motion, AnimatePresence } from 'framer-motion';
@@ -13,27 +14,6 @@ const poppins = Poppins({
   display: 'swap',
   variable: '--font-poppins',
 });
-
-// Metadata default untuk seluruh aplikasi
-export const metadata = {
-  title: 'Nordz Apparel - Streetwear & Urban Apparel',
-  description: 'Temukan koleksi streetwear dan urban apparel original dari Nordz. Kualitas, style, dan kenyamanan untuk gaya terbaikmu.',
-  // Anda bisa menambahkan metadata lain di sini jika perlu, seperti:
-  // keywords: 'nordz, streetwear, urban apparel, kaos distro, hoodie, fashion pria, fashion wanita',
-  // openGraph: {
-  //   title: 'Nordz Apparel',
-  //   description: 'Streetwear & Urban Apparel Original dan Berkualitas.',
-  //   images: [
-  //     {
-  //       url: '/icons/nordz-logo.png', // Path ke logo Anda di folder public
-  //       width: 800, // Sesuaikan
-  //       height: 600, // Sesuaikan
-  //       alt: 'Nordz Apparel Logo',
-  //     },
-  //   ],
-  //   siteName: 'Nordz Apparel',
-  // },
-};
 
 const pageTransitionVariants = {
   initial: {
@@ -63,6 +43,15 @@ export default function RootLayout({ children }) {
 
   return (
     <html lang="id" className={poppins.variable}>
+      <Head>
+        {/* Judul default untuk semua halaman ditambahkan di sini */}
+        <title>Nordz Apparel - Streetwear & Urban Apparel</title>
+        {/* Deskripsi default juga bisa ditambahkan di sini jika perlu */}
+        <meta name="description" content="Temukan koleksi streetwear dan urban apparel original dari Nordz. Kualitas, style, dan kenyamanan untuk gaya terbaikmu." />
+        {/* Tambahkan tag meta lain yang relevan untuk seluruh situs di sini */}
+        <meta name="keywords" content="nordz, streetwear, urban apparel, kaos distro, hoodie, fashion pria, fashion wanita" />
+        <link rel="icon" href="/favicon.ico" /> {/* Pastikan favicon.ico ada di folder public */}
+      </Head>
       <body>
         <Providers> 
           <AnimatePresence mode="wait"> 
