@@ -49,7 +49,7 @@ export default function RootLayout({ children }) {
         <meta name="viewport" content="width=device-width, initial-scale=1" />
         <title>Nordz Apparel</title>
         <meta name="description" content="Deskripsi default Nordz Apparel." />
-        <link rel="icon" href="/icons/nordz-logo.png" />
+        <link rel="icon" href="public/icons/nordz-logo.png" />
         {/* Tambahkan tag meta lain jika perlu, pastikan tidak ada whitespace antar tag */}
       </head>
       <body>
